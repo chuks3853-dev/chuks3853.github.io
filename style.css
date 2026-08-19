@@ -1,0 +1,856 @@
+/* Imports the main visual system for the hotel project. */
+:root { /* Defines reusable CSS variables for the entire design. */
+  --navy: #172329; /* Stores the primary dark color. */
+  --cream: #f5f1e8; /* Stores the warm background color. */
+  --gold: #c8a96b; /* Stores the luxury accent color. */
+  --text: #243238; /* Stores the main text color. */
+  --muted: #6e777b; /* Stores the secondary text color. */
+  --white: #ffffff; /* Stores the white color. */
+  --border: rgba(36, 50, 56, .13); /* Stores a reusable subtle border color. */
+  --shadow: 0 20px 60px rgba(23, 35, 41, .12); /* Stores a reusable soft shadow. */
+  --radius: 18px; /* Stores the standard rounded corner size. */
+} /* Ends the root variables block. */
+* { /* Selects every element on the page. */
+  box-sizing: border-box; /* Makes width calculations include padding and borders. */
+  margin: 0; /* Removes default browser margins. */
+  padding: 0; /* Removes default browser padding. */
+} /* Ends the universal selector. */
+html { /* Styles the root HTML element. */
+  scroll-behavior: smooth; /* Makes anchor navigation scroll smoothly. */
+  scroll-padding-top: 90px; /* Prevents sticky navigation from covering anchored sections. */
+} /* Ends the HTML styles. */
+body { /* Styles the whole website body. */
+  font-family: "DM Sans", sans-serif; /* Uses the modern sans-serif body font. */
+  color: var(--text); /* Applies the main text color. */
+  background: var(--cream); /* Applies the warm page background. */
+  line-height: 1.6; /* Improves text readability. */
+  transition: background .3s, color .3s; /* Animates theme changes smoothly. */
+} /* Ends the body styles. */
+body.dark { /* Changes the visual theme when JavaScript adds the dark class. */
+  --cream: #101719; /* Replaces the background with a dark tone. */
+  --text: #eef1ed; /* Replaces the text with a light tone. */
+  --muted: #aab4b7; /* Makes secondary text lighter in dark mode. */
+  --white: #172329; /* Changes white surfaces to dark surfaces. */
+  --border: rgba(255,255,255,.12); /* Makes borders visible against dark surfaces. */
+} /* Ends the dark theme. */
+img { /* Styles all images. */
+  display: block; /* Removes the small inline-image gap. */
+  width: 100%; /* Makes images fill their containers. */
+} /* Ends image styles. */
+a { /* Styles all links. */
+  color: inherit; /* Makes links inherit surrounding text color. */
+  text-decoration: none; /* Removes default underlines. */
+} /* Ends link styles. */
+button, input, select { /* Styles interactive form controls. */
+  font: inherit; /* Makes controls use the same font as the page. */
+} /* Ends form-control font styles. */
+button { /* Styles all buttons. */
+  cursor: pointer; /* Shows that buttons are clickable. */
+} /* Ends button styles. */
+.container { /* Creates the reusable centered content container. */
+  width: min(1120px, calc(100% - 40px)); /* Limits content width while keeping side spacing responsive. */
+  margin-inline: auto; /* Centers the container horizontally. */
+} /* Ends container styles. */
+.topbar { /* Styles the narrow information bar. */
+  display: flex; /* Places content and theme button in one row. */
+  justify-content: center; /* Centers the main topbar content. */
+  align-items: center; /* Vertically centers topbar items. */
+  min-height: 34px; /* Gives the topbar a compact height. */
+  padding: 4px 20px; /* Adds breathing room around the text. */
+  background: var(--navy); /* Uses the dark brand color. */
+  color: #fff; /* Makes topbar text readable. */
+  font-size: .75rem; /* Keeps the utility text small. */
+  letter-spacing: .08em; /* Adds a premium typographic feel. */
+  text-transform: uppercase; /* Makes the utility text uppercase. */
+  position: relative; /* Allows the theme button to be positioned relative to the bar. */
+} /* Ends topbar styles. */
+.icon-btn { /* Styles the dark-mode button. */
+  position: absolute; /* Positions the button independently inside the topbar. */
+  right: 20px; /* Places it near the right edge. */
+  border: 0; /* Removes the default border. */
+  background: transparent; /* Keeps the button visually minimal. */
+  color: #fff; /* Makes the icon white. */
+  font-size: 1rem; /* Sets the icon size. */
+} /* Ends icon button styles. */
+.site-header { /* Styles the main navigation header. */
+  position: sticky; /* Keeps navigation visible during scrolling. */
+  top: 0; /* Pins the header to the top. */
+  z-index: 100; /* Places navigation above normal content. */
+  background: rgba(245,241,232,.92); /* Adds a translucent cream background. */
+  backdrop-filter: blur(14px); /* Adds a modern glass-like blur effect. */
+  border-bottom: 1px solid var(--border); /* Separates navigation from content. */
+} /* Ends site-header styles. */
+.dark .site-header { /* Adjusts navigation background for dark mode. */
+  background: rgba(16,23,25,.92); /* Uses a translucent dark background. */
+} /* Ends dark header styles. */
+.navbar { /* Styles the navigation row. */
+  min-height: 72px; /* Gives the header a comfortable height. */
+  display: flex; /* Places logo, links and button horizontally. */
+  align-items: center; /* Vertically centers navigation items. */
+  gap: 30px; /* Adds spacing between navigation groups. */
+} /* Ends navbar styles. */
+.logo { /* Styles the hotel wordmark. */
+  font-family: "Playfair Display", serif; /* Uses the elegant display font. */
+  font-size: 1.45rem; /* Sets the logo size. */
+  font-weight: 700; /* Makes the logo bold. */
+  white-space: nowrap; /* Prevents the logo from wrapping. */
+} /* Ends logo styles. */
+.logo span { /* Styles the second word in the logo. */
+  color: var(--gold); /* Highlights Haven with the luxury accent. */
+} /* Ends logo accent styles. */
+.nav-links { /* Styles the navigation list. */
+  display: flex; /* Arranges links in a row. */
+  list-style: none; /* Removes bullet points. */
+  gap: 25px; /* Adds space between links. */
+  margin-left: auto; /* Pushes the navigation toward the right. */
+} /* Ends navigation list styles. */
+.nav-link { /* Styles each navigation link. */
+  position: relative; /* Allows the active underline to be positioned. */
+  font-size: .9rem; /* Sets a compact navigation font size. */
+  font-weight: 600; /* Gives navigation links visual weight. */
+} /* Ends nav-link styles. */
+.nav-link::after { /* Creates the animated navigation underline. */
+  content: ""; /* Creates an empty pseudo-element. */
+  position: absolute; /* Positions the underline below the link. */
+  left: 0; /* Starts the underline at the link's left edge. */
+  bottom: -8px; /* Places it slightly below the text. */
+  width: 0; /* Starts with no visible underline. */
+  height: 2px; /* Gives the underline a small thickness. */
+  background: var(--gold); /* Uses the accent color. */
+  transition: width .25s; /* Animates the underline width. */
+} /* Ends the underline pseudo-element. */
+.nav-link:hover::after, .nav-link.active::after { /* Shows the underline on hover and active links. */
+  width: 100%; /* Expands the underline across the link. */
+} /* Ends active underline styles. */
+.btn { /* Creates the reusable primary button component. */
+  display: inline-flex; /* Allows easy centering of button text. */
+  align-items: center; /* Vertically centers button content. */
+  justify-content: center; /* Horizontally centers button content. */
+  gap: 8px; /* Adds spacing between optional button elements. */
+  min-height: 50px; /* Gives buttons a comfortable touch target. */
+  padding: 0 24px; /* Adds horizontal button spacing. */
+  border: 1px solid var(--gold); /* Adds the accent border. */
+  background: var(--gold); /* Uses the gold accent as the fill. */
+  color: #172329; /* Uses a dark button label. */
+  font-weight: 700; /* Makes the call to action prominent. */
+  border-radius: 999px; /* Creates pill-shaped buttons. */
+  transition: transform .25s, box-shadow .25s, background .25s; /* Animates button interactions. */
+} /* Ends button styles. */
+.btn:hover { /* Defines the primary button hover state. */
+  transform: translateY(-3px); /* Lifts the button slightly. */
+  box-shadow: 0 12px 25px rgba(200,169,107,.25); /* Adds a soft accent shadow. */
+} /* Ends button hover styles. */
+.btn-small { /* Creates a smaller navigation button variant. */
+  min-height: 42px; /* Reduces the navigation button height. */
+  padding-inline: 18px; /* Reduces the navigation button width. */
+} /* Ends small button styles. */
+.btn-outline { /* Creates an outlined button variant. */
+  background: transparent; /* Removes the filled background. */
+  color: #fff; /* Makes the label white for the hero. */
+} /* Ends outlined button styles. */
+.btn-light { /* Creates a light button for the dark CTA section. */
+  background: #fff; /* Gives the button a white background. */
+  border-color: #fff; /* Matches the border to the background. */
+  color: var(--navy); /* Uses the dark brand color for text. */
+} /* Ends light button styles. */
+.menu-toggle { /* Styles the mobile menu button. */
+  display: none; /* Hides it on larger screens. */
+  border: 0; /* Removes the default button border. */
+  background: transparent; /* Keeps the button minimal. */
+  font-size: 1.7rem; /* Makes the menu icon easy to tap. */
+} /* Ends menu toggle styles. */
+.hero { /* Styles the full-width hero area. */
+  min-height: 78vh; /* Gives the hero strong visual presence. */
+  position: relative; /* Creates the positioning context for slides and content. */
+  display: grid; /* Allows content to be vertically centered. */
+  place-items: center; /* Centers the hero content. */
+  overflow: hidden; /* Hides moving slide edges. */
+  color: #fff; /* Makes hero text white. */
+} /* Ends hero styles. */
+.hero-slide { /* Styles each hero background slide. */
+  position: absolute; /* Places every slide behind the content. */
+  inset: 0; /* Stretches each slide to cover the hero. */
+  background-size: cover; /* Makes the image cover the entire area. */
+  background-position: center; /* Centers the background image. */
+  opacity: 0; /* Hides inactive slides. */
+  transform: scale(1.04); /* Adds a subtle zoom starting position. */
+  transition: opacity 1s ease, transform 6s ease; /* Creates a smooth slideshow effect. */
+} /* Ends hero slide styles. */
+.hero-slide.active { /* Styles the currently visible hero slide. */
+  opacity: 1; /* Makes the active slide visible. */
+  transform: scale(1); /* Slowly settles the image into place. */
+} /* Ends active hero slide styles. */
+.hero-overlay { /* Creates a readability overlay over hero images. */
+  position: absolute; /* Positions the overlay across the hero. */
+  inset: 0; /* Stretches the overlay across the whole hero. */
+  background: linear-gradient(90deg, rgba(12,19,22,.78), rgba(12,19,22,.22)); /* Creates a cinematic dark gradient. */
+} /* Ends hero overlay styles. */
+.hero-content { /* Styles the content above the hero background. */
+  position: relative; /* Keeps content above the overlay. */
+  z-index: 2; /* Places content above background layers. */
+  padding-block: 120px; /* Gives the hero text generous vertical spacing. */
+} /* Ends hero content styles. */
+.eyebrow { /* Styles small section labels. */
+  margin-bottom: 10px; /* Adds space below the label. */
+  color: var(--gold); /* Uses the accent color. */
+  font-size: .72rem; /* Keeps labels compact. */
+  font-weight: 700; /* Makes labels visually strong. */
+  letter-spacing: .2em; /* Adds editorial spacing. */
+  text-transform: uppercase; /* Makes labels uppercase. */
+} /* Ends eyebrow styles. */
+.hero h1 { /* Styles the hero headline. */
+  max-width: 750px; /* Prevents the headline from becoming too wide. */
+  font-family: "Playfair Display", serif; /* Uses the elegant display font. */
+  font-size: clamp(3rem, 7vw, 6.5rem); /* Makes the headline responsive. */
+  line-height: .95; /* Creates a dramatic headline line-height. */
+  font-weight: 600; /* Keeps the display weight elegant. */
+} /* Ends hero heading styles. */
+.hero h1 em { /* Styles the emphasized word in the hero title. */
+  color: var(--gold); /* Highlights the emphasized word. */
+  font-style: normal; /* Removes the default italic style. */
+} /* Ends hero emphasis styles. */
+.hero-copy { /* Styles the hero supporting paragraph. */
+  max-width: 600px; /* Limits paragraph width for readability. */
+  margin: 25px 0 30px; /* Creates balanced spacing around the paragraph. */
+  font-size: 1.08rem; /* Makes the hero copy slightly larger. */
+  color: rgba(255,255,255,.84); /* Softens the white text. */
+} /* Ends hero copy styles. */
+.hero-actions { /* Styles the hero action group. */
+  display: flex; /* Places buttons beside each other. */
+  flex-wrap: wrap; /* Allows buttons to wrap on small screens. */
+  gap: 12px; /* Adds spacing between buttons. */
+} /* Ends hero actions. */
+.hero-dots { /* Styles the slideshow indicator container. */
+  position: absolute; /* Positions indicators at the bottom of the hero. */
+  z-index: 3; /* Places indicators above the image. */
+  bottom: 35px; /* Adds space from the bottom. */
+  left: 50%; /* Starts positioning from the center. */
+  transform: translateX(-50%); /* Corrects the horizontal center position. */
+  display: flex; /* Arranges dots horizontally. */
+  gap: 8px; /* Adds spacing between dots. */
+} /* Ends hero dots. */
+.hero-dot { /* Styles each slideshow indicator. */
+  width: 8px; /* Sets dot width. */
+  height: 8px; /* Sets dot height. */
+  border: 0; /* Removes the default button border. */
+  border-radius: 50%; /* Makes the indicator circular. */
+  background: rgba(255,255,255,.45); /* Makes inactive dots translucent. */
+} /* Ends hero dot styles. */
+.hero-dot.active { /* Styles the active slideshow indicator. */
+  width: 28px; /* Makes the active indicator wider. */
+  border-radius: 10px; /* Creates a pill shape for the active indicator. */
+  background: var(--gold); /* Highlights the active slide. */
+} /* Ends active dot styles. */
+.scroll-cue { /* Styles the hero scroll cue. */
+  position: absolute; /* Positions the cue near the bottom-left. */
+  right: 35px; /* Places the cue away from the right edge. */
+  bottom: 28px; /* Places the cue near the bottom. */
+  z-index: 3; /* Keeps the cue above the hero image. */
+  font-size: 1.4rem; /* Makes the arrow visible. */
+} /* Ends scroll cue styles. */
+.booking-wrap { /* Styles the booking section wrapper. */
+  position: relative; /* Allows the card to overlap the hero. */
+  z-index: 5; /* Places the booking card above nearby content. */
+  margin-top: -45px; /* Pulls the booking card upward over the hero. */
+} /* Ends booking wrapper styles. */
+.booking-card { /* Styles the main booking form. */
+  display: grid; /* Creates a structured form grid. */
+  grid-template-columns: repeat(4, 1fr) auto; /* Creates four fields and one button column. */
+  gap: 12px; /* Adds space between form controls. */
+  padding: 18px; /* Adds internal spacing. */
+  background: var(--white); /* Gives the form a card surface. */
+  border: 1px solid var(--border); /* Adds a subtle border. */
+  border-radius: var(--radius); /* Rounds the card corners. */
+  box-shadow: var(--shadow); /* Adds depth beneath the booking card. */
+} /* Ends booking card styles. */
+.field { /* Styles individual booking fields. */
+  padding: 5px 12px; /* Adds inner field spacing. */
+  border-right: 1px solid var(--border); /* Separates fields visually. */
+} /* Ends field styles. */
+.field label { /* Styles booking labels. */
+  display: block; /* Places the label above the control. */
+  margin-bottom: 2px; /* Adds a small gap before the input. */
+  color: var(--muted); /* Uses muted text for labels. */
+  font-size: .7rem; /* Keeps labels compact. */
+  font-weight: 700; /* Makes labels readable. */
+  text-transform: uppercase; /* Makes labels uppercase. */
+  letter-spacing: .1em; /* Adds label spacing. */
+} /* Ends field label styles. */
+.field input, .field select { /* Styles booking controls. */
+  width: 100%; /* Makes controls fill their field. */
+  border: 0; /* Removes default control borders. */
+  outline: 0; /* Removes default focus outline for custom styling. */
+  background: transparent; /* Keeps the form clean. */
+  color: var(--text); /* Uses the theme text color. */
+} /* Ends booking control styles. */
+.booking-btn { /* Styles the booking submit button. */
+  min-height: 58px; /* Makes the main action more prominent. */
+} /* Ends booking button styles. */
+.form-message { /* Styles booking feedback messages. */
+  min-height: 28px; /* Prevents layout jumping when messages appear. */
+  padding-top: 10px; /* Adds space above feedback text. */
+  color: var(--gold); /* Uses the accent color for feedback. */
+  font-weight: 700; /* Makes feedback noticeable. */
+} /* Ends form message styles. */
+.section { /* Creates reusable section spacing. */
+  padding-block: 100px; /* Gives each section generous vertical space. */
+} /* Ends section spacing. */
+.section-heading { /* Styles common section headings. */
+  max-width: 720px; /* Limits heading width. */
+  margin-bottom: 45px; /* Separates headings from section content. */
+} /* Ends section heading styles. */
+.section-heading h2 { /* Styles section titles. */
+  font-family: "Playfair Display", serif; /* Uses the display font. */
+  font-size: clamp(2.2rem, 4vw, 4rem); /* Makes titles responsive. */
+  line-height: 1.05; /* Tightens title line-height. */
+} /* Ends section title styles. */
+.section-heading.center { /* Centers selected section headings. */
+  margin-inline: auto; /* Centers the heading block. */
+  text-align: center; /* Centers heading text. */
+} /* Ends centered heading styles. */
+.intro-grid { /* Creates the introduction two-column layout. */
+  display: grid; /* Enables CSS grid. */
+  grid-template-columns: 1fr 1fr; /* Creates two equal columns. */
+  gap: 80px; /* Adds generous space between paragraphs. */
+  color: var(--muted); /* Uses secondary text color. */
+  font-size: 1.05rem; /* Slightly increases paragraph size. */
+} /* Ends intro grid styles. */
+.muted-section { /* Styles sections with a contrasting surface. */
+  background: rgba(36,50,56,.045); /* Adds a subtle tinted background. */
+} /* Ends muted section styles. */
+.row-heading { /* Creates a heading row for sections with controls. */
+  display: flex; /* Places title and secondary content side by side. */
+  align-items: end; /* Aligns the bottom edges. */
+  justify-content: space-between; /* Pushes content to opposite sides. */
+  gap: 25px; /* Adds spacing when the layout gets tight. */
+} /* Ends row heading styles. */
+.row-heading > p { /* Styles the secondary row description. */
+  color: var(--muted); /* Uses muted text. */
+} /* Ends row description styles. */
+.filters { /* Styles the room filter buttons. */
+  display: flex; /* Places filter buttons in a row. */
+  gap: 8px; /* Adds space between filter buttons. */
+  flex-wrap: wrap; /* Allows filters to wrap on small screens. */
+} /* Ends filters styles. */
+.filter-btn { /* Styles each room filter button. */
+  padding: 8px 15px; /* Gives filter buttons compact spacing. */
+  border: 1px solid var(--border); /* Adds a subtle border. */
+  border-radius: 999px; /* Creates pill-shaped filter buttons. */
+  background: transparent; /* Keeps inactive filters light. */
+  color: var(--text); /* Uses theme text. */
+} /* Ends filter button styles. */
+.filter-btn.active, .filter-btn:hover { /* Styles selected and hovered filters. */
+  background: var(--navy); /* Uses the dark brand color. */
+  color: #fff; /* Makes selected filter text white. */
+} /* Ends active filter styles. */
+.room-grid { /* Creates the room card grid. */
+  display: grid; /* Enables CSS grid. */
+  grid-template-columns: repeat(3, 1fr); /* Creates three equal columns. */
+  gap: 22px; /* Adds space between room cards. */
+} /* Ends room grid styles. */
+.room-card { /* Styles individual room cards. */
+  overflow: hidden; /* Clips images and rounded corners cleanly. */
+  background: var(--white); /* Gives cards a clear surface. */
+  border: 1px solid var(--border); /* Adds subtle card boundaries. */
+  border-radius: var(--radius); /* Rounds card corners. */
+  transition: transform .3s, box-shadow .3s; /* Animates card hover effects. */
+} /* Ends room card styles. */
+.room-card:hover { /* Defines room card hover interaction. */
+  transform: translateY(-7px); /* Lifts the card. */
+  box-shadow: var(--shadow); /* Adds depth to the lifted card. */
+} /* Ends room card hover styles. */
+.room-image { /* Styles the room image wrapper. */
+  position: relative; /* Allows price badge positioning. */
+  height: 270px; /* Gives all room images equal height. */
+  overflow: hidden; /* Clips image zoom effects. */
+} /* Ends room image wrapper styles. */
+.room-image img { /* Styles room card images. */
+  height: 100%; /* Fills the image wrapper vertically. */
+  object-fit: cover; /* Crops images without distortion. */
+  transition: transform .5s; /* Animates the image zoom. */
+} /* Ends room image styles. */
+.room-card:hover .room-image img { /* Defines room image hover behavior. */
+  transform: scale(1.06); /* Slightly zooms the image. */
+} /* Ends room image hover styles. */
+.price { /* Styles the price badge. */
+  position: absolute; /* Places the badge over the image. */
+  right: 14px; /* Positions it near the right edge. */
+  bottom: 14px; /* Positions it near the bottom edge. */
+  padding: 8px 12px; /* Adds badge spacing. */
+  background: var(--white); /* Gives the badge a readable surface. */
+  border-radius: 10px; /* Rounds the badge. */
+  font-weight: 700; /* Highlights the price. */
+} /* Ends price badge styles. */
+.price small { /* Styles the price period. */
+  color: var(--muted); /* Makes the period less prominent. */
+  font-weight: 400; /* Reduces the period weight. */
+} /* Ends price period styles. */
+.room-body { /* Styles the room card text area. */
+  padding: 25px; /* Adds internal card spacing. */
+} /* Ends room body styles. */
+.tag { /* Styles room category labels. */
+  color: var(--gold); /* Uses the accent color. */
+  font-size: .7rem; /* Keeps tags compact. */
+  font-weight: 700; /* Makes tags prominent. */
+  letter-spacing: .15em; /* Adds editorial spacing. */
+} /* Ends tag styles. */
+.room-body h3 { /* Styles room names. */
+  margin: 7px 0; /* Adds spacing around the room name. */
+  font-family: "Playfair Display", serif; /* Uses the display font. */
+  font-size: 1.65rem; /* Sets room name size. */
+} /* Ends room title styles. */
+.room-body p { /* Styles room feature summaries. */
+  color: var(--muted); /* Uses muted text. */
+  font-size: .9rem; /* Keeps details compact. */
+} /* Ends room summary styles. */
+.text-btn { /* Styles text-only action buttons. */
+  margin-top: 20px; /* Separates action from room details. */
+  padding: 0; /* Removes button padding. */
+  border: 0; /* Removes button border. */
+  background: transparent; /* Keeps it text-like. */
+  color: var(--text); /* Uses theme text. */
+  font-weight: 700; /* Makes the action readable. */
+} /* Ends text button styles. */
+.amenities-grid { /* Creates the amenities grid. */
+  display: grid; /* Enables CSS grid. */
+  grid-template-columns: repeat(4, 1fr); /* Creates four columns on desktop. */
+  gap: 15px; /* Adds spacing between amenities. */
+} /* Ends amenities grid styles. */
+.amenity { /* Styles individual amenities. */
+  padding: 35px 25px; /* Adds generous internal spacing. */
+  border: 1px solid var(--border); /* Adds a subtle border. */
+  border-radius: var(--radius); /* Rounds the amenity card. */
+  background: var(--white); /* Gives the card a surface. */
+} /* Ends amenity styles. */
+.amenity span { /* Styles amenity icons. */
+  display: inline-grid; /* Allows easy icon centering. */
+  place-items: center; /* Centers the symbol. */
+  width: 48px; /* Sets icon circle width. */
+  height: 48px; /* Sets icon circle height. */
+  margin-bottom: 20px; /* Adds space below the icon. */
+  border-radius: 50%; /* Creates a circular icon background. */
+  background: rgba(200,169,107,.15); /* Adds a subtle gold background. */
+  color: var(--gold); /* Makes the symbol gold. */
+} /* Ends amenity icon styles. */
+.amenity h3 { /* Styles amenity names. */
+  margin-bottom: 8px; /* Separates title from description. */
+  font-family: "Playfair Display", serif; /* Uses the display font. */
+  font-size: 1.4rem; /* Sets amenity title size. */
+} /* Ends amenity title styles. */
+.amenity p { /* Styles amenity descriptions. */
+  color: var(--muted); /* Uses muted text. */
+  font-size: .9rem; /* Keeps descriptions compact. */
+} /* Ends amenity description styles. */
+.stats-section { /* Styles the statistics band. */
+  padding-block: 60px; /* Adds vertical spacing. */
+  background: var(--navy); /* Uses the dark brand color. */
+  color: #fff; /* Makes statistics white. */
+} /* Ends statistics section styles. */
+.stats-grid { /* Creates the statistics grid. */
+  display: grid; /* Enables CSS grid. */
+  grid-template-columns: repeat(4, 1fr); /* Creates four statistic columns. */
+  text-align: center; /* Centers statistics. */
+} /* Ends statistics grid styles. */
+.stat { /* Styles each statistic. */
+  padding: 10px 20px; /* Adds spacing around each statistic. */
+  border-right: 1px solid rgba(255,255,255,.12); /* Separates statistics. */
+} /* Ends statistic styles. */
+.stat:last-child { /* Targets the final statistic. */
+  border-right: 0; /* Removes the final divider. */
+} /* Ends final statistic style. */
+.stat strong { /* Styles the animated number. */
+  display: block; /* Places the number above its label. */
+  color: var(--gold); /* Makes the number gold. */
+  font-family: "Playfair Display", serif; /* Uses the display font. */
+  font-size: 3rem; /* Makes the number visually dominant. */
+} /* Ends counter styles. */
+.stat span { /* Styles statistic labels. */
+  color: rgba(255,255,255,.65); /* Softens the labels. */
+  font-size: .8rem; /* Keeps labels compact. */
+  text-transform: uppercase; /* Makes labels uppercase. */
+  letter-spacing: .08em; /* Adds label spacing. */
+} /* Ends statistic label styles. */
+.gallery-grid { /* Creates the gallery layout. */
+  display: grid; /* Enables CSS grid. */
+  grid-template-columns: 1.4fr 1fr 1fr; /* Creates an asymmetric three-column layout. */
+  grid-auto-rows: 250px; /* Gives gallery rows a consistent height. */
+  gap: 14px; /* Adds space between images. */
+} /* Ends gallery grid styles. */
+.gallery-item { /* Styles clickable gallery buttons. */
+  position: relative; /* Creates a positioning context. */
+  overflow: hidden; /* Clips image zoom effects. */
+  padding: 0; /* Removes default button padding. */
+  border: 0; /* Removes button border. */
+  border-radius: var(--radius); /* Rounds gallery corners. */
+  background: transparent; /* Removes button background. */
+} /* Ends gallery item styles. */
+.gallery-item.large { /* Styles the large gallery item. */
+  grid-row: span 2; /* Makes the first image span two rows. */
+} /* Ends large gallery item styles. */
+.gallery-item img { /* Styles gallery images. */
+  height: 100%; /* Makes images fill their grid cells. */
+  object-fit: cover; /* Crops images elegantly. */
+  transition: transform .5s; /* Animates gallery zoom. */
+} /* Ends gallery image styles. */
+.gallery-item:hover img { /* Defines gallery hover behavior. */
+  transform: scale(1.06); /* Slightly zooms the image. */
+} /* Ends gallery hover styles. */
+.testimonial-wrap { /* Styles the testimonial slider layout. */
+  display: grid; /* Uses grid for arrow, quote and arrow. */
+  grid-template-columns: 50px 1fr 50px; /* Creates fixed navigation columns. */
+  align-items: center; /* Vertically centers the slider controls. */
+  gap: 25px; /* Adds spacing around the testimonial. */
+  max-width: 850px; /* Limits testimonial width. */
+  margin-inline: auto; /* Centers the testimonial slider. */
+} /* Ends testimonial wrap styles. */
+.testimonial { /* Styles the active testimonial content. */
+  min-height: 210px; /* Gives testimonials stable height. */
+  padding: 30px; /* Adds internal spacing. */
+  text-align: center; /* Centers testimonial text. */
+} /* Ends testimonial styles. */
+.testimonial blockquote { /* Styles the testimonial quote. */
+  font-family: "Playfair Display", serif; /* Uses the display font. */
+  font-size: clamp(1.4rem, 3vw, 2.2rem); /* Makes the quote responsive. */
+  line-height: 1.3; /* Improves quote readability. */
+} /* Ends blockquote styles. */
+.testimonial cite { /* Styles the testimonial author. */
+  display: block; /* Places author on its own line. */
+  margin-top: 20px; /* Adds space above the author. */
+  color: var(--gold); /* Highlights the author. */
+  font-style: normal; /* Removes default italic styling. */
+  font-weight: 700; /* Makes the author prominent. */
+} /* Ends cite styles. */
+.slider-btn { /* Styles testimonial navigation buttons. */
+  width: 50px; /* Sets button width. */
+  height: 50px; /* Sets button height. */
+  border: 1px solid var(--border); /* Adds a subtle border. */
+  border-radius: 50%; /* Makes the button circular. */
+  background: var(--white); /* Gives it a clear surface. */
+  color: var(--text); /* Uses theme text color. */
+} /* Ends slider button styles. */
+.faq-list { /* Styles the FAQ list container. */
+  max-width: 850px; /* Limits the accordion width. */
+  margin-left: auto; /* Pushes it to the right column area. */
+} /* Ends FAQ list styles. */
+.faq-item { /* Styles each FAQ item. */
+  border-top: 1px solid var(--border); /* Separates accordion items. */
+} /* Ends FAQ item styles. */
+.faq-item:last-child { /* Targets the last FAQ item. */
+  border-bottom: 1px solid var(--border); /* Adds the final divider. */
+} /* Ends final FAQ item styles. */
+.faq-question { /* Styles accordion question buttons. */
+  width: 100%; /* Makes the button span the full accordion width. */
+  display: flex; /* Places question and plus icon in a row. */
+  justify-content: space-between; /* Pushes plus icon to the right. */
+  padding: 22px 0; /* Adds vertical spacing. */
+  border: 0; /* Removes button border. */
+  background: transparent; /* Keeps the accordion clean. */
+  color: var(--text); /* Uses theme text. */
+  text-align: left; /* Keeps question aligned to the left. */
+  font-weight: 700; /* Makes questions prominent. */
+} /* Ends FAQ question styles. */
+.faq-answer { /* Styles the hidden FAQ answer. */
+  display: grid; /* Enables animated grid-row opening. */
+  grid-template-rows: 0fr; /* Collapses the answer by default. */
+  transition: grid-template-rows .3s ease; /* Animates opening and closing. */
+} /* Ends FAQ answer styles. */
+.faq-answer p { /* Styles FAQ answer text. */
+  overflow: hidden; /* Hides text while the answer is collapsed. */
+  color: var(--muted); /* Uses muted text. */
+} /* Ends FAQ answer paragraph styles. */
+.faq-item.open .faq-answer { /* Styles an open FAQ answer. */
+  grid-template-rows: 1fr; /* Expands the answer content. */
+} /* Ends open FAQ answer styles. */
+.faq-item.open .faq-question span { /* Rotates the plus symbol for open answers. */
+  transform: rotate(45deg); /* Turns plus into a close-like symbol. */
+} /* Ends FAQ icon rotation. */
+.faq-question span { /* Styles the FAQ plus symbol. */
+  font-size: 1.4rem; /* Makes the plus visible. */
+  transition: transform .3s; /* Animates the rotation. */
+} /* Ends FAQ icon styles. */
+.cta-section { /* Styles the final call-to-action band. */
+  padding-block: 90px; /* Adds generous vertical space. */
+  background: var(--navy); /* Uses the dark brand color. */
+  color: #fff; /* Makes CTA text white. */
+} /* Ends CTA section styles. */
+.cta-inner { /* Styles the CTA content row. */
+  display: flex; /* Places text and button side by side. */
+  align-items: center; /* Vertically centers CTA items. */
+  justify-content: space-between; /* Pushes button to the opposite side. */
+  gap: 30px; /* Adds space between CTA elements. */
+} /* Ends CTA inner styles. */
+.cta-inner h2 { /* Styles the CTA heading. */
+  max-width: 650px; /* Limits the heading width. */
+  font-family: "Playfair Display", serif; /* Uses the display font. */
+  font-size: clamp(2rem, 4vw, 3.7rem); /* Makes CTA heading responsive. */
+  line-height: 1.05; /* Tightens CTA heading line-height. */
+} /* Ends CTA heading styles. */
+.footer { /* Styles the footer. */
+  padding-top: 70px; /* Adds space above footer content. */
+  background: #101719; /* Uses a darker footer background. */
+  color: #fff; /* Makes footer text white. */
+} /* Ends footer styles. */
+.footer-grid { /* Creates the footer column layout. */
+  display: grid; /* Enables CSS grid. */
+  grid-template-columns: 2fr 1fr 1fr 1fr; /* Creates a wide brand column and three smaller columns. */
+  gap: 40px; /* Adds spacing between footer columns. */
+  padding-bottom: 55px; /* Adds space before the copyright line. */
+} /* Ends footer grid styles. */
+.footer-grid p, .footer-grid a { /* Styles footer links and text. */
+  display: block; /* Places each item on its own line. */
+  margin-top: 8px; /* Adds vertical spacing. */
+  color: rgba(255,255,255,.62); /* Softens footer text. */
+  font-size: .9rem; /* Keeps footer text compact. */
+} /* Ends footer text styles. */
+.footer-grid h4 { /* Styles footer headings. */
+  color: var(--gold); /* Highlights headings. */
+  text-transform: uppercase; /* Makes headings uppercase. */
+  letter-spacing: .12em; /* Adds editorial spacing. */
+  font-size: .75rem; /* Keeps headings compact. */
+} /* Ends footer heading styles. */
+.socials { /* Styles the social link group. */
+  display: flex; /* Places social links horizontally. */
+  gap: 10px; /* Adds spacing between social links. */
+} /* Ends social group styles. */
+.socials a { /* Styles individual social links. */
+  display: grid; /* Enables easy centering. */
+  place-items: center; /* Centers the social abbreviation. */
+  width: 38px; /* Sets social button width. */
+  height: 38px; /* Sets social button height. */
+  margin-top: 12px; /* Adds space above social buttons. */
+  border: 1px solid rgba(255,255,255,.18); /* Adds a subtle border. */
+  border-radius: 50%; /* Makes social links circular. */
+} /* Ends social link styles. */
+.footer-bottom { /* Styles the copyright strip. */
+  padding: 18px 20px; /* Adds copyright spacing. */
+  border-top: 1px solid rgba(255,255,255,.1); /* Separates copyright from footer columns. */
+  text-align: center; /* Centers the copyright message. */
+  color: rgba(255,255,255,.5); /* Softens copyright text. */
+  font-size: .8rem; /* Keeps copyright text small. */
+} /* Ends footer bottom styles. */
+.modal, .lightbox { /* Styles both overlay components. */
+  position: fixed; /* Keeps overlays attached to the viewport. */
+  inset: 0; /* Makes the overlay cover the entire viewport. */
+  z-index: 200; /* Places overlays above all page content. */
+  display: grid; /* Enables easy centering. */
+  place-items: center; /* Centers modal content. */
+  padding: 20px; /* Adds screen-edge spacing. */
+  background: rgba(8,14,16,.72); /* Creates a dark backdrop. */
+  opacity: 0; /* Hides overlays initially. */
+  visibility: hidden; /* Prevents interaction when hidden. */
+  transition: opacity .25s, visibility .25s; /* Animates overlay appearance. */
+} /* Ends overlay styles. */
+.modal.show, .lightbox.show { /* Styles visible overlays. */
+  opacity: 1; /* Makes the overlay visible. */
+  visibility: visible; /* Enables interaction. */
+} /* Ends visible overlay styles. */
+.modal-box { /* Styles the room modal content. */
+  position: relative; /* Creates a context for the close button. */
+  width: min(560px, 100%); /* Limits modal width while remaining responsive. */
+  padding: 45px; /* Adds modal content spacing. */
+  border-radius: var(--radius); /* Rounds modal corners. */
+  background: var(--white); /* Gives the modal a surface. */
+  color: var(--text); /* Uses theme text. */
+  box-shadow: var(--shadow); /* Adds depth to the modal. */
+} /* Ends modal box styles. */
+.modal-box h2 { /* Styles modal titles. */
+  margin-bottom: 15px; /* Adds spacing below the title. */
+  font-family: "Playfair Display", serif; /* Uses the display font. */
+  font-size: 2.6rem; /* Makes the room title prominent. */
+} /* Ends modal title styles. */
+.modal-box ul { /* Styles modal feature lists. */
+  margin: 20px 0 25px 20px; /* Adds spacing around feature list. */
+  color: var(--muted); /* Uses muted feature text. */
+} /* Ends modal feature list styles. */
+.modal-close { /* Styles close buttons for overlays. */
+  position: absolute; /* Positions close button within overlay. */
+  top: 20px; /* Places it near the top. */
+  right: 20px; /* Places it near the right edge. */
+  width: 40px; /* Sets close button width. */
+  height: 40px; /* Sets close button height. */
+  border: 0; /* Removes default border. */
+  border-radius: 50%; /* Makes close button circular. */
+  background: rgba(255,255,255,.15); /* Gives close button a translucent background. */
+  color: #fff; /* Makes close icon white. */
+  font-size: 1.5rem; /* Sets close icon size. */
+} /* Ends modal close styles. */
+.modal-box .modal-close { /* Overrides the close button colors inside light modal surfaces. */
+  background: var(--navy); /* Gives the modal close button a dark surface. */
+} /* Ends modal close override. */
+.lightbox img { /* Styles the expanded gallery image. */
+  width: min(1000px, 92vw); /* Limits lightbox image width. */
+  max-height: 88vh; /* Prevents image from becoming taller than the viewport. */
+  object-fit: contain; /* Keeps the image's full aspect ratio. */
+  border-radius: 12px; /* Rounds lightbox image corners. */
+} /* Ends lightbox image styles. */
+.back-top { /* Styles the scroll-to-top button. */
+  position: fixed; /* Keeps the button in the viewport. */
+  right: 22px; /* Places it near the right edge. */
+  bottom: 22px; /* Places it near the bottom edge. */
+  z-index: 80; /* Keeps it above normal content. */
+  width: 45px; /* Sets button width. */
+  height: 45px; /* Sets button height. */
+  border: 0; /* Removes default border. */
+  border-radius: 50%; /* Makes the button circular. */
+  background: var(--gold); /* Uses the accent color. */
+  color: var(--navy); /* Uses dark text. */
+  opacity: 0; /* Hides it before scrolling. */
+  pointer-events: none; /* Prevents clicking while hidden. */
+  transform: translateY(15px); /* Starts slightly lower. */
+  transition: opacity .25s, transform .25s; /* Animates its appearance. */
+} /* Ends back-top styles. */
+.back-top.show { /* Styles the visible back-to-top button. */
+  opacity: 1; /* Makes the button visible. */
+  pointer-events: auto; /* Allows the button to be clicked. */
+  transform: translateY(0); /* Returns it to its normal position. */
+} /* Ends visible back-top styles. */
+.toast { /* Styles temporary toast messages. */
+  position: fixed; /* Keeps the toast visible relative to the viewport. */
+  left: 50%; /* Positions the toast from the center. */
+  bottom: 25px; /* Places it above the bottom edge. */
+  z-index: 300; /* Places it above overlays when needed. */
+  transform: translate(-50%, 20px); /* Starts slightly below its final position. */
+  padding: 12px 18px; /* Adds toast spacing. */
+  border-radius: 999px; /* Creates a pill shape. */
+  background: var(--navy); /* Uses the dark brand color. */
+  color: #fff; /* Makes toast text white. */
+  opacity: 0; /* Hides the toast initially. */
+  pointer-events: none; /* Prevents accidental interaction. */
+  transition: opacity .25s, transform .25s; /* Animates toast appearance. */
+} /* Ends toast styles. */
+.toast.show { /* Styles visible toast messages. */
+  opacity: 1; /* Makes the toast visible. */
+  transform: translate(-50%, 0); /* Moves the toast into place. */
+} /* Ends visible toast styles. */
+.reveal { /* Sets the initial state for scroll-reveal animations. */
+  opacity: 0; /* Starts elements invisible. */
+  transform: translateY(30px); /* Starts elements slightly below their final position. */
+  transition: opacity .7s ease, transform .7s ease; /* Animates reveal effects. */
+} /* Ends reveal initial styles. */
+.reveal.visible { /* Styles elements after JavaScript reveals them. */
+  opacity: 1; /* Makes the element visible. */
+  transform: translateY(0); /* Returns the element to its normal position. */
+} /* Ends reveal visible styles. */
+@media (max-width: 900px) { /* Starts tablet and small-laptop responsive rules. */
+  .nav-links { /* Adjusts navigation on smaller screens. */
+    position: absolute; /* Allows the mobile menu to overlay content. */
+    top: 72px; /* Places it below the navigation bar. */
+    left: 20px; /* Adds a side offset. */
+    right: 20px; /* Adds the opposite side offset. */
+    display: none; /* Hides the menu until JavaScript opens it. */
+    flex-direction: column; /* Stacks links vertically. */
+    padding: 20px; /* Adds menu spacing. */
+    background: var(--white); /* Gives the menu a solid surface. */
+    border: 1px solid var(--border); /* Adds a menu border. */
+    border-radius: 15px; /* Rounds the menu corners. */
+    box-shadow: var(--shadow); /* Adds depth to the menu. */
+  } /* Ends smaller navigation styles. */
+  .nav-links.open { /* Styles the opened mobile navigation. */
+    display: flex; /* Shows the menu. */
+  } /* Ends opened menu styles. */
+  .menu-toggle { /* Shows the mobile menu button. */
+    display: block; /* Makes the menu button visible. */
+    margin-left: auto; /* Pushes it toward the right. */
+  } /* Ends mobile menu button styles. */
+  .nav-cta { /* Adjusts the desktop booking button. */
+    display: none; /* Hides the navigation CTA to reduce crowding. */
+  } /* Ends mobile CTA styles. */
+  .booking-card { /* Adjusts booking form layout. */
+    grid-template-columns: repeat(2, 1fr); /* Changes the form to two columns. */
+  } /* Ends tablet booking layout. */
+  .booking-btn { /* Adjusts booking button placement. */
+    grid-column: 1 / -1; /* Makes the button span the full form width. */
+  } /* Ends tablet booking button style. */
+  .room-grid { /* Adjusts room cards for tablets. */
+    grid-template-columns: repeat(2, 1fr); /* Changes the grid to two columns. */
+  } /* Ends tablet room grid. */
+  .amenities-grid { /* Adjusts amenities for tablets. */
+    grid-template-columns: repeat(2, 1fr); /* Changes amenities to two columns. */
+  } /* Ends tablet amenities grid. */
+  .footer-grid { /* Adjusts footer for tablets. */
+    grid-template-columns: repeat(2, 1fr); /* Changes footer to two columns. */
+  } /* Ends tablet footer grid. */
+} /* Ends tablet media query. */
+@media (max-width: 650px) { /* Starts phone responsive rules. */
+  .container { /* Adjusts container width on phones. */
+    width: min(100% - 28px, 1120px); /* Reduces side margins for small screens. */
+  } /* Ends phone container styles. */
+  .topbar p { /* Adjusts topbar text on phones. */
+    padding-right: 25px; /* Prevents overlap with the theme button. */
+    font-size: .62rem; /* Makes utility text smaller. */
+  } /* Ends phone topbar styles. */
+  .hero { /* Adjusts hero height on phones. */
+    min-height: 75vh; /* Keeps the hero large without consuming the whole screen. */
+  } /* Ends phone hero styles. */
+  .hero-content { /* Adjusts hero content on phones. */
+    padding-block: 90px; /* Reduces vertical spacing. */
+  } /* Ends phone hero content. */
+  .hero h1 { /* Adjusts hero title on phones. */
+    font-size: clamp(2.8rem, 14vw, 4.5rem); /* Makes the title fit narrow screens. */
+  } /* Ends phone hero title. */
+  .scroll-cue { /* Hides the scroll cue on very small screens. */
+    display: none; /* Removes unnecessary visual clutter. */
+  } /* Ends phone scroll cue. */
+  .booking-wrap { /* Adjusts booking overlap on phones. */
+    margin-top: -25px; /* Reduces overlap. */
+  } /* Ends phone booking wrapper. */
+  .booking-card { /* Stacks booking controls on phones. */
+    grid-template-columns: 1fr; /* Creates one column. */
+  } /* Ends phone booking grid. */
+  .field { /* Adjusts phone field borders. */
+    border-right: 0; /* Removes vertical field separators. */
+    border-bottom: 1px solid var(--border); /* Adds horizontal separators. */
+    padding-block: 10px; /* Adds vertical field spacing. */
+  } /* Ends phone field styles. */
+  .intro-grid { /* Stacks introduction paragraphs on phones. */
+    grid-template-columns: 1fr; /* Creates one column. */
+    gap: 20px; /* Reduces paragraph spacing. */
+  } /* Ends phone intro grid. */
+  .row-heading { /* Stacks heading rows on phones. */
+    align-items: start; /* Aligns stacked content to the top. */
+    flex-direction: column; /* Stacks heading and controls. */
+  } /* Ends phone row heading. */
+  .room-grid, .amenities-grid { /* Adjusts room and amenity grids on phones. */
+    grid-template-columns: 1fr; /* Creates one column. */
+  } /* Ends phone card grids. */
+  .stats-grid { /* Adjusts statistics on phones. */
+    grid-template-columns: repeat(2, 1fr); /* Creates two statistic columns. */
+    gap: 20px 0; /* Adds vertical spacing between statistic rows. */
+  } /* Ends phone statistics grid. */
+  .stat:nth-child(2) { /* Targets the second statistic on phones. */
+    border-right: 0; /* Removes the middle divider. */
+  } /* Ends phone second statistic style. */
+  .gallery-grid { /* Adjusts gallery on phones. */
+    grid-template-columns: 1fr 1fr; /* Creates two gallery columns. */
+    grid-auto-rows: 180px; /* Reduces gallery row height. */
+  } /* Ends phone gallery grid. */
+  .gallery-item.large { /* Adjusts the large gallery image on phones. */
+    grid-row: span 1; /* Stops the large image from spanning two rows. */
+  } /* Ends phone large gallery style. */
+  .testimonial-wrap { /* Adjusts testimonial slider on phones. */
+    grid-template-columns: 38px 1fr 38px; /* Shrinks arrow columns. */
+    gap: 5px; /* Reduces slider spacing. */
+  } /* Ends phone testimonial layout. */
+  .testimonial { /* Adjusts testimonial content on phones. */
+    padding: 10px; /* Reduces internal spacing. */
+  } /* Ends phone testimonial styles. */
+  .cta-inner { /* Stacks CTA content on phones. */
+    align-items: start; /* Aligns content to the left. */
+    flex-direction: column; /* Stacks text and button. */
+  } /* Ends phone CTA layout. */
+  .footer-grid { /* Stacks footer columns on phones. */
+    grid-template-columns: 1fr; /* Creates one footer column. */
+  } /* Ends phone footer grid. */
+  .modal-box { /* Adjusts modal spacing on phones. */
+    padding: 35px 25px; /* Reduces modal padding. */
+  } /* Ends phone modal styles. */
+} /* Ends phone media query. */
+@media (prefers-reduced-motion: reduce) { /* Starts accessibility rules for users who prefer less animation. */
+  html { /* Adjusts root scrolling behavior. */
+    scroll-behavior: auto; /* Disables smooth scrolling for reduced-motion users. */
+  } /* Ends reduced-motion HTML styles. */
+  *, *::before, *::after { /* Targets all animated elements. */
+    transition-duration: .01ms !important; /* Minimizes CSS transitions. */
+    animation-duration: .01ms !important; /* Minimizes CSS animations. */
+  } /* Ends reduced-motion animation styles. */
+} /* Ends reduced-motion media query. */
