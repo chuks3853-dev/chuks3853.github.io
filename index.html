@@ -1,252 +1,27 @@
-<!DOCTYPE html> <!-- Defines this document as an HTML5 page. -->
-<html lang="en"> <!-- Starts the page and declares English as the document language. -->
-<head> <!-- Starts the document metadata section. -->
-  <meta charset="UTF-8"> <!-- Allows the page to display modern characters correctly. -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the layout responsive on phones and tablets. -->
-  <meta name="description" content="Grand Haven Hotel - luxury rooms, dining, spa and unforgettable stays."> <!-- Provides a useful description for search engines. -->
-  <title>Grand Haven Hotel | Luxury Stay</title> <!-- Sets the browser tab title. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Speeds up the connection to Google Fonts. -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Allows the font server to be contacted efficiently. -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"> <!-- Loads the two fonts used by the design. -->
-  <link rel="stylesheet" href="style.css"> <!-- Connects this HTML page to the external CSS file. -->
-</head> <!-- Ends the document metadata section. -->
-<body> <!-- Starts the visible page content. -->
-  <div class="topbar"> <!-- Creates a small information bar above the navigation. -->
-    <p>Open daily · 24/7 concierge · +234 800 123 4567</p> <!-- Displays hotel contact information. -->
-    <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">◐</button> <!-- Creates the JavaScript-powered dark-mode button. -->
-  </div> <!-- Ends the top information bar. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIM</title>
+</head>
+<link rel="stylesheet" href="/style.css">
+<body>
+    <div class="container">
+       <div class="header"> 
+        <h1>Mobile data</h1>
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">◐</button>
+    </div>
+   <div class="btn-1">
+    <input type="none" class="sim1" placeholder="SIM1" ></input>
+</div>
+<div class="btn-2">
+    <input type="none" class="sim2" placeholder="SIM2"></input>
+</div>
 
-  <header class="site-header" id="home"> <!-- Creates the main sticky website header. -->
-    <nav class="navbar container" aria-label="Main navigation"> <!-- Creates the responsive navigation area. -->
-      <a class="logo" href="#home">Grand <span>Haven</span></a> <!-- Creates the hotel logo and links it to the top of the page. -->
-      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button> <!-- Creates the mobile navigation button. -->
-      <ul class="nav-links" id="navLinks"> <!-- Contains all main navigation links. -->
-        <li><a class="nav-link active" href="#home">Home</a></li> <!-- Links to the hero section. -->
-        <li><a class="nav-link" href="#rooms">Rooms</a></li> <!-- Links to the rooms section. -->
-        <li><a class="nav-link" href="#amenities">Amenities</a></li> <!-- Links to the amenities section. -->
-        <li><a class="nav-link" href="#gallery">Gallery</a></li> <!-- Links to the gallery section. -->
-        <li><a class="nav-link" href="#reviews">Reviews</a></li> <!-- Links to the reviews section. -->
-        <li><a class="nav-link" href="#contact">Contact</a></li> <!-- Links to the contact section. -->
-      </ul> <!-- Ends the navigation links list. -->
-      <a class="btn btn-small nav-cta" href="#booking">Book Now</a> <!-- Creates a call-to-action booking button. -->
-    </nav> <!-- Ends the navigation area. -->
-  </header> <!-- Ends the main website header. -->
-
-  <main> <!-- Starts the primary page content. -->
-    <section class="hero" aria-label="Hotel introduction"> <!-- Creates the full-screen hero section. -->
-      <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1800&q=85');"></div> <!-- Adds the first hero background image. -->
-      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=1800&q=85');"></div> <!-- Adds the second hero background image. -->
-      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=85');"></div> <!-- Adds the third hero background image. -->
-      <div class="hero-overlay"></div> <!-- Adds a dark overlay so the hero text remains readable. -->
-      <div class="hero-content container reveal"> <!-- Holds the main hero text and buttons. -->
-        <p class="eyebrow">WELCOME TO GRAND HAVEN</p> <!-- Displays a small uppercase introduction label. -->
-        <h1>Stay somewhere <em>extraordinary.</em></h1> <!-- Displays the main marketing headline. -->
-        <p class="hero-copy">A refined urban retreat where thoughtful service, beautiful spaces and unforgettable moments meet.</p> <!-- Displays the supporting hero message. -->
-        <div class="hero-actions"> <!-- Groups the two hero call-to-action buttons. -->
-          <a class="btn" href="#booking">Reserve Your Stay</a> <!-- Scrolls visitors to the booking form. -->
-          <a class="btn btn-outline" href="#rooms">Explore Rooms</a> <!-- Scrolls visitors to the room cards. -->
-        </div> <!-- Ends the hero buttons. -->
-      </div> <!-- Ends the hero content container. -->
-      <div class="hero-dots" id="heroDots" aria-label="Hero slides"></div> <!-- JavaScript dynamically creates hero slide indicators here. -->
-      <a class="scroll-cue" href="#booking" aria-label="Scroll to booking">↓</a> <!-- Creates a visual scroll cue. -->
-    </section> <!-- Ends the hero section. -->
-
-    <section class="booking-wrap" id="booking"> <!-- Creates the floating booking search section. -->
-      <form class="booking-card container" id="bookingForm"> <!-- Creates the booking form controlled by JavaScript. -->
-        <div class="field"> <!-- Creates the check-in field container. -->
-          <label for="checkIn">Check in</label> <!-- Labels the check-in input. -->
-          <input type="date" id="checkIn" required> <!-- Collects the guest arrival date. -->
-        </div> <!-- Ends the check-in field. -->
-        <div class="field"> <!-- Creates the check-out field container. -->
-          <label for="checkOut">Check out</label> <!-- Labels the check-out input. -->
-          <input type="date" id="checkOut" required> <!-- Collects the guest departure date. -->
-        </div> <!-- Ends the check-out field. -->
-        <div class="field"> <!-- Creates the guest selector field. -->
-          <label for="guests">Guests</label> <!-- Labels the guest selector. -->
-          <select id="guests"> <!-- Creates a dropdown for guest count. -->
-            <option value="1">1 Guest</option> <!-- Provides one guest as an option. -->
-            <option value="2" selected>2 Guests</option> <!-- Provides two guests as the default option. -->
-            <option value="3">3 Guests</option> <!-- Provides three guests as an option. -->
-            <option value="4">4 Guests</option> <!-- Provides four guests as an option. -->
-            <option value="5">5 Guests</option> <!-- Provides five guests as an option. -->
-            <option value="6">6 Guests</option> <!-- Provides six guests as an option. -->
-          </select> <!-- Ends the guest selector. -->
-        </div> <!-- Ends the guest field. -->
-        <div class="field"> <!-- Creates the room selector field. -->
-          <label for="roomType">Room</label> <!-- Labels the room selector. -->
-          <select id="roomType"> <!-- Creates a dropdown for room types. -->
-            <option value="any">Any room</option> <!-- Provides the default room option. -->
-            <option value="deluxe">Deluxe King</option> <!-- Provides the deluxe room option. -->
-            <option value="suite">Haven Suite</option> <!-- Provides the suite option. -->
-            <option value="family">Family Residence</option> <!-- Provides the family room option. -->
-          </select> <!-- Ends the room selector. -->
-        </div> <!-- Ends the room field. -->
-        <button class="btn booking-btn" type="submit">Check Availability</button> <!-- Submits the booking form through JavaScript. -->
-      </form> <!-- Ends the booking form. -->
-      <p class="form-message container" id="bookingMessage" role="status"></p> <!-- Displays validation and availability messages. -->
-    </section> <!-- Ends the booking section. -->
-
-    <section class="section intro container reveal" id="about"> <!-- Creates the hotel introduction section. -->
-      <div class="section-heading"> <!-- Groups the section heading content. -->
-        <p class="eyebrow">THE GRAND HAVEN EXPERIENCE</p> <!-- Displays the section eyebrow. -->
-        <h2>Where every stay becomes a story.</h2> <!-- Displays the section headline. -->
-      </div> <!-- Ends the section heading. -->
-      <div class="intro-grid"> <!-- Creates a two-column introduction layout. -->
-        <p>From the first welcome to the final goodbye, Grand Haven is designed around the details that make travel feel effortless. Discover calm interiors, locally inspired cuisine, restorative wellness and warm hospitality.</p> <!-- Provides the first introduction paragraph. -->
-        <p>Whether you are here for a weekend escape, a business trip or a celebration, our team is ready to make your stay distinctly yours.</p> <!-- Provides the second introduction paragraph. -->
-      </div> <!-- Ends the introduction grid. -->
-    </section> <!-- Ends the introduction section. -->
-
-    <section class="section muted-section" id="rooms"> <!-- Creates the rooms section with a contrasting background. -->
-      <div class="container"> <!-- Centers the room content. -->
-        <div class="section-heading row-heading reveal"> <!-- Creates a heading row with filters. -->
-          <div> <!-- Groups the room title. -->
-            <p class="eyebrow">SLEEP BEAUTIFULLY</p> <!-- Displays the room section eyebrow. -->
-            <h2>Rooms & suites</h2> <!-- Displays the room section title. -->
-          </div> <!-- Ends the room title group. -->
-          <div class="filters" id="roomFilters"> <!-- Holds JavaScript-powered room filters. -->
-            <button class="filter-btn active" data-filter="all">All</button> <!-- Shows every room. -->
-            <button class="filter-btn" data-filter="deluxe">Deluxe</button> <!-- Filters deluxe rooms. -->
-            <button class="filter-btn" data-filter="suite">Suites</button> <!-- Filters suites. -->
-            <button class="filter-btn" data-filter="family">Family</button> <!-- Filters family rooms. -->
-          </div> <!-- Ends the room filters. -->
-        </div> <!-- Ends the room heading row. -->
-        <div class="room-grid"> <!-- Creates the responsive room card grid. -->
-          <article class="room-card reveal" data-category="deluxe"> <!-- Creates the first filterable room card. -->
-            <div class="room-image"> <!-- Creates the image area of the first room card. -->
-              <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1000&q=80" alt="Deluxe king hotel room"> <!-- Displays the deluxe room image. -->
-              <span class="price">₦185k <small>/ night</small></span> <!-- Displays the room price badge. -->
-            </div> <!-- Ends the first room image. -->
-            <div class="room-body"> <!-- Creates the text area of the first room card. -->
-              <span class="tag">DELUXE</span> <!-- Displays the room category. -->
-              <h3>Deluxe King</h3> <!-- Displays the room name. -->
-              <p>King bed · City view · 2 guests · 42 m²</p> <!-- Displays room features. -->
-              <button class="text-btn room-details" data-room="Deluxe King">View details →</button> <!-- Opens the JavaScript room details modal. -->
-            </div> <!-- Ends the first room body. -->
-          </article> <!-- Ends the first room card. -->
-          <article class="room-card reveal" data-category="suite"> <!-- Creates the second filterable room card. -->
-            <div class="room-image"> <!-- Creates the image area of the second room card. -->
-              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=80" alt="Luxury suite with living area"> <!-- Displays the suite image. -->
-              <span class="price">₦295k <small>/ night</small></span> <!-- Displays the suite price badge. -->
-            </div> <!-- Ends the second room image. -->
-            <div class="room-body"> <!-- Creates the text area of the second room card. -->
-              <span class="tag">SIGNATURE</span> <!-- Displays the suite category. -->
-              <h3>Haven Suite</h3> <!-- Displays the suite name. -->
-              <p>King bed · Lounge · 2 guests · 68 m²</p> <!-- Displays suite features. -->
-              <button class="text-btn room-details" data-room="Haven Suite">View details →</button> <!-- Opens the room details modal for the suite. -->
-            </div> <!-- Ends the second room body. -->
-          </article> <!-- Ends the second room card. -->
-          <article class="room-card reveal" data-category="family"> <!-- Creates the third filterable room card. -->
-            <div class="room-image"> <!-- Creates the image area of the third room card. -->
-              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80" alt="Spacious family hotel bedroom"> <!-- Displays the family room image. -->
-              <span class="price">₦340k <small>/ night</small></span> <!-- Displays the family room price badge. -->
-            </div> <!-- Ends the third room image. -->
-            <div class="room-body"> <!-- Creates the text area of the third room card. -->
-              <span class="tag">FAMILY</span> <!-- Displays the family category. -->
-              <h3>Family Residence</h3> <!-- Displays the family room name. -->
-              <p>2 bedrooms · Kitchenette · 5 guests · 96 m²</p> <!-- Displays family room features. -->
-              <button class="text-btn room-details" data-room="Family Residence">View details →</button> <!-- Opens the room details modal for the family room. -->
-            </div> <!-- Ends the third room body. -->
-          </article> <!-- Ends the third room card. -->
-        </div> <!-- Ends the room grid. -->
-      </div> <!-- Ends the centered room container. -->
-    </section> <!-- Ends the rooms section. -->
-
-    <section class="section container" id="amenities"> <!-- Creates the amenities section. -->
-      <div class="section-heading center reveal"> <!-- Centers the amenities heading. -->
-        <p class="eyebrow">MORE THAN A ROOM</p> <!-- Displays the amenities eyebrow. -->
-        <h2>Everything you need, beautifully considered.</h2> <!-- Displays the amenities headline. -->
-      </div> <!-- Ends the amenities heading. -->
-      <div class="amenities-grid"> <!-- Creates the amenities grid. -->
-        <div class="amenity reveal"><span>✦</span><h3>Infinity Pool</h3><p>Morning swims and sunset views above the city.</p></div> <!-- Creates the pool amenity card. -->
-        <div class="amenity reveal"><span>♨</span><h3>Haven Spa</h3><p>Restorative treatments designed to reset your rhythm.</p></div> <!-- Creates the spa amenity card. -->
-        <div class="amenity reveal"><span>⌁</span><h3>Fine Dining</h3><p>Seasonal menus inspired by local ingredients.</p></div> <!-- Creates the dining amenity card. -->
-        <div class="amenity reveal"><span>◌</span><h3>Fitness Studio</h3><p>Modern equipment and private wellness sessions.</p></div> <!-- Creates the fitness amenity card. -->
-      </div> <!-- Ends the amenities grid. -->
-    </section> <!-- Ends the amenities section. -->
-
-    <section class="stats-section"> <!-- Creates the animated statistics strip. -->
-      <div class="container stats-grid"> <!-- Centers the statistics. -->
-        <div class="stat"><strong class="counter" data-target="98">0</strong><span>% guest satisfaction</span></div> <!-- Creates the first animated counter. -->
-        <div class="stat"><strong class="counter" data-target="24">0</strong><span>/7 concierge service</span></div> <!-- Creates the second animated counter. -->
-        <div class="stat"><strong class="counter" data-target="12">0</strong><span>signature experiences</span></div> <!-- Creates the third animated counter. -->
-        <div class="stat"><strong class="counter" data-target="15">0</strong><span>years of hospitality</span></div> <!-- Creates the fourth animated counter. -->
-      </div> <!-- Ends the statistics grid. -->
-    </section> <!-- Ends the statistics strip. -->
-
-    <section class="section gallery-section" id="gallery"> <!-- Creates the interactive gallery section. -->
-      <div class="container"> <!-- Centers the gallery. -->
-        <div class="section-heading row-heading reveal"> <!-- Creates the gallery heading row. -->
-          <div><p class="eyebrow">A GLIMPSE INSIDE</p><h2>Gallery</h2></div> <!-- Displays the gallery heading. -->
-          <p>Click any image to open the lightbox.</p> <!-- Explains the gallery interaction. -->
-        </div> <!-- Ends the gallery heading row. -->
-        <div class="gallery-grid"> <!-- Creates the asymmetric gallery layout. -->
-          <button class="gallery-item large reveal" data-full="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=90"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=900&q=80" alt="Grand Haven exterior"></button> <!-- Creates the first large clickable gallery image. -->
-          <button class="gallery-item reveal" data-full="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=90"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" alt="Hotel pool"></button> <!-- Creates the second clickable gallery image. -->
-          <button class="gallery-item reveal" data-full="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1600&q=90"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80" alt="Hotel lobby"></button> <!-- Creates the third clickable gallery image. -->
-          <button class="gallery-item reveal" data-full="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=90"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=700&q=80" alt="Hotel dining"></button> <!-- Creates the fourth clickable gallery image. -->
-        </div> <!-- Ends the gallery grid. -->
-      </div> <!-- Ends the gallery container. -->
-    </section> <!-- Ends the gallery section. -->
-
-    <section class="section reviews-section muted-section" id="reviews"> <!-- Creates the testimonial section. -->
-      <div class="container"> <!-- Centers the testimonials. -->
-        <div class="section-heading center reveal"><p class="eyebrow">GUEST LOVE</p><h2>What our guests say</h2></div> <!-- Displays the testimonial heading. -->
-        <div class="testimonial-wrap reveal"> <!-- Creates the testimonial slider container. -->
-          <button class="slider-btn" id="prevReview" aria-label="Previous review">←</button> <!-- Creates the previous review button. -->
-          <div class="testimonial" id="testimonial"></div> <!-- JavaScript inserts testimonial content here. -->
-          <button class="slider-btn" id="nextReview" aria-label="Next review">→</button> <!-- Creates the next review button. -->
-        </div> <!-- Ends the testimonial slider. -->
-      </div> <!-- Ends the testimonial container. -->
-    </section> <!-- Ends the reviews section. -->
-
-    <section class="section faq-section container reveal"> <!-- Creates the FAQ section. -->
-      <div class="section-heading"><p class="eyebrow">QUESTIONS, ANSWERED</p><h2>Frequently asked questions</h2></div> <!-- Displays the FAQ heading. -->
-      <div class="faq-list"> <!-- Holds all FAQ accordion items. -->
-        <div class="faq-item"><button class="faq-question">What time is check-in? <span>+</span></button><div class="faq-answer"><p>Standard check-in begins at 2:00 PM and check-out is at 12:00 PM.</p></div></div> <!-- Creates the first accordion item. -->
-        <div class="faq-item"><button class="faq-question">Do you offer airport transfers? <span>+</span></button><div class="faq-answer"><p>Yes. Airport transfers can be arranged with our concierge before arrival.</p></div></div> <!-- Creates the second accordion item. -->
-        <div class="faq-item"><button class="faq-question">Can I cancel my reservation? <span>+</span></button><div class="faq-answer"><p>Flexible reservations can be cancelled up to 48 hours before arrival.</p></div></div> <!-- Creates the third accordion item. -->
-        <div class="faq-item"><button class="faq-question">Is breakfast included? <span>+</span></button><div class="faq-answer"><p>Breakfast is included with selected packages and suite bookings.</p></div></div> <!-- Creates the fourth accordion item. -->
-      </div> <!-- Ends the FAQ list. -->
-    </section> <!-- Ends the FAQ section. -->
-
-    <section class="cta-section" id="contact"> <!-- Creates the final contact call-to-action. -->
-      <div class="container cta-inner reveal"> <!-- Centers the CTA content. -->
-        <div><p class="eyebrow">READY WHEN YOU ARE</p><h2>Your next great stay starts here.</h2></div> <!-- Displays the final CTA message. -->
-        <a class="btn btn-light" href="mailto:reservations@grandhaven.example">Contact Reservations</a> <!-- Creates a mail link for reservation enquiries. -->
-      </div> <!-- Ends the CTA content. -->
-    </section> <!-- Ends the CTA section. -->
-  </main> <!-- Ends the primary page content. -->
-
-  <footer class="footer"> <!-- Creates the website footer. -->
-    <div class="container footer-grid"> <!-- Creates the responsive footer grid. -->
-      <div><a class="logo" href="#home">Grand <span>Haven</span></a><p>Thoughtful stays. Beautifully delivered.</p></div> <!-- Creates the footer brand area. -->
-      <div><h4>Explore</h4><a href="#rooms">Rooms</a><a href="#amenities">Amenities</a><a href="#gallery">Gallery</a></div> <!-- Creates the footer exploration links. -->
-      <div><h4>Contact</h4><p>14 Haven Boulevard</p><p>Lagos, Nigeria</p><p>+234 800 123 4567</p></div> <!-- Creates the footer contact details. -->
-      <div><h4>Follow</h4><div class="socials"><a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="X">X</a></div></div> <!-- Creates simple social media links. -->
-    </div> <!-- Ends the footer grid. -->
-    <div class="footer-bottom"><p>© <span id="year"></span> Grand Haven Hotel. Student front-end project.</p></div> <!-- Creates the copyright line with a JavaScript year. -->
-  </footer> <!-- Ends the footer. -->
-
-  <div class="modal" id="roomModal" aria-hidden="true"> <!-- Creates the hidden room-details modal. -->
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle"> <!-- Creates the modal dialog box. -->
-      <button class="modal-close" id="modalClose" aria-label="Close modal">×</button> <!-- Creates the modal close button. -->
-      <p class="eyebrow">ROOM DETAILS</p> <!-- Displays the modal eyebrow. -->
-      <h2 id="modalTitle">Room</h2> <!-- Receives the selected room name through JavaScript. -->
-      <p id="modalText"></p> <!-- Receives the selected room description through JavaScript. -->
-      <ul id="modalFeatures"></ul> <!-- Receives the selected room features through JavaScript. -->
-      <a class="btn" href="#booking" id="modalBook">Book this room</a> <!-- Links from the modal to the booking section. -->
-    </div> <!-- Ends the modal box. -->
-  </div> <!-- Ends the room modal. -->
-
-  <div class="lightbox" id="lightbox" aria-hidden="true"> <!-- Creates the hidden image lightbox. -->
-    <button id="lightboxClose" class="modal-close" aria-label="Close image">×</button> <!-- Creates the lightbox close button. -->
-    <img id="lightboxImage" src="" alt="Expanded gallery image"> <!-- Receives the clicked gallery image URL through JavaScript. -->
-  </div> <!-- Ends the lightbox. -->
-
-  <button class="back-top" id="backTop" aria-label="Back to top">↑</button> <!-- Creates the scroll-to-top JavaScript button. -->
-  <div class="toast" id="toast" role="status"></div> <!-- Creates a reusable JavaScript toast notification. -->
-
-  <script src="script.js"></script> <!-- Connects this HTML page to the external JavaScript file. -->
-</body> <!-- Ends the visible page content. -->
-</html> <!-- Ends the HTML document. -->
+<p>Data charges may be applied to your new data <br>SIM.</p>
+<p class="m">More</p>
+</div>
+</div>
+</body>
+</html>
